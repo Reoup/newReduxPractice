@@ -1,30 +1,30 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux'; 
-import  selectBook  from '../actions/index'
+import { connect } from 'react-redux';
+import selectBook from '../actions/index'
 import { bindActionCreators } from 'redux';
 
 class BookList extends Component {
     renderList() {
         return this.props.books.map((book) => {
             return (
-                <li 
-                key={book.title} 
-                onClick={() => {this.props.selectBook(book)}}
-                className="list-group-item">{book.title}</li>
+                <li
+                    key={book.title}
+                    onClick={() => { this.props.selectBook(book) }}
+                    className="list-group-item">{book.title}</li>
             );
         });
-    }
+    };
 
     render() {
         return (
             <ul className="list-group col-sm-4">
                 {this.renderList()}
             </ul>
-        )
+        );
     }
 }
 
-function mapStateToProps(state){ 
+function mapStateToProps(state) {
     // state는 책 배열과 활성화된 책 정보를 가지고 있음, state가 변하면 컨테이너는 즉시 리렌더링하여 새 책 리스트를 가짐
     // 여기서 반환되는 것이 무엇이든지, 
     // booklist 안의 props 형태로 보여질 것
@@ -33,8 +33,9 @@ function mapStateToProps(state){
     };
 }
 
-function mapDispatchToProps(dispatch){
-    return bindActionCreators({selectBook: selectBook}, dispatch); 
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators({ selectBook: selectBook }, dispatch);
+    // 모든 액션들을 가져와 어플리케이션 안에 모든 리듀서로 전달하는 것
     // 이를 호출하면 액션 생성자를 호출하는 것
 }
 
